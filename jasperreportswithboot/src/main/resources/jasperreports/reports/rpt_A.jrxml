@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.0.4.final using JasperReports Library version 6.0.4  -->
+<!-- 2015-05-08T09:00:44 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4e34f802-603b-4276-a595-e3ec3dd6448c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="pumpkin"/>
+	<scriptlet name="CustomScriplet" class="gauravbrills.demo.jasper.reports.LogScriplet"/>
+	<parameter name="productid" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select master.product_id,product_name,description,address,latitude,longitude,COALESCE (star_Rating,'0') rating from m_product_master master ,m_hotel hotel
+ where master.product_id = hotel.product_id and star_Rating <> "boutique" and
+ master.product_id like  if( $P{productid} = "ALL","%", $P{productid})
+ order by rating desc]]>
+	</queryString>
+	<field name="product_name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="description" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="address" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="latitude" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="longitude" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="rating" class="java.lang.String"/>
+	<field name="product_id" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="rating1" class="java.lang.Integer" resetType="Group" resetGroup="By Rating" calculation="Count">
+		<variableExpression><![CDATA[$F{rating}]]></variableExpression>
+	</variable>
+	<variable name="product_name1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{product_name}]]></variableExpression>
+	</variable>
+	<group name="By Rating" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{rating}]]></groupExpression>
+		<groupHeader>
+			<band height="22">
+				<textField>
+					<reportElement mode="Opaque" x="0" y="0" width="555" height="20" backcolor="#C1D3F5" uuid="68b7c860-2a48-422f-be9c-6ab18443999b"/>
+					<box topPadding="1" bottomPadding="1">
+						<topPen lineWidth="2.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="2.0" lineStyle="Solid"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement markup="none">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{rating} + " Star "]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="22">
+				<textField>
+					<reportElement x="0" y="0" width="555" height="20" uuid="7d1dbcd5-02cb-4f87-945f-57395b00c76a"/>
+					<box>
+						<topPen lineWidth="2.0" lineStyle="Solid"/>
+						<leftPen lineWidth="0.1"/>
+						<bottomPen lineWidth="2.0"/>
+						<rightPen lineWidth="0.1"/>
+					</box>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["No of Hotels with "+$F{rating} +"  Star : "+ $V{rating1}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="57" splitType="Stretch">
+			<staticText>
+				<reportElement x="202" y="20" width="150" height="30" uuid="88588d1d-1d12-4e68-b052-2c26e68fbe5d"/>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[Hotel Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="450" y="0" width="100" height="15" uuid="2228582e-acc0-49f1-a05b-24794f17a306"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page : " +$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+			<staticText>
+				<reportElement x="0" y="0" width="141" height="32" uuid="343a022a-0507-45bb-aa54-b643156b923b"/>
+				<box bottomPadding="2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUCT NAME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="141" y="0" width="138" height="32" uuid="4ba355eb-5c1f-4c82-b4ab-6318cf73ed36"/>
+				<box bottomPadding="2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPTION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="0" width="138" height="32" uuid="988b4d9c-08b4-4f88-a2aa-a15c417dc4df"/>
+				<box bottomPadding="2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ADDRESS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="417" y="0" width="138" height="32" uuid="d8e96f9b-dfe8-401a-bb50-250cf8b1c093"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRODUCT ID]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="52" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+			<textField>
+				<reportElement mode="Opaque" x="0" y="0" width="141" height="52" uuid="e3b196a1-c2be-4171-a6ff-b92d0f03ab15"/>
+				<box rightPadding="2"/>
+				<textFieldExpression><![CDATA[$F{product_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="141" y="0" width="138" height="52" isPrintWhenDetailOverflows="true" printWhenGroupChanges="By Rating" uuid="82a33a4b-2abf-4f54-9e04-f2834ac67396"/>
+				<box rightPadding="2"/>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="279" y="0" width="138" height="52" uuid="a7d219bf-20b4-461c-a043-7c3e0b203f20"/>
+				<box rightPadding="2"/>
+				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="417" y="0" width="138" height="52" uuid="215de463-cd64-460e-8b20-6045e65c5eaf"/>
+				<textFieldExpression><![CDATA[$F{product_id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="58" splitType="Stretch">
+			<staticText>
+				<reportElement x="-11" y="24" width="100" height="16" uuid="5f799d4e-e398-4ae9-9b6d-731f9cfcbf32"/>
+				<text><![CDATA[ © gauravbrills]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="450" y="20" width="100" height="15" uuid="583942ca-6e03-4149-81e3-e809d6078644"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="31" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="555" height="30" forecolor="#000000" uuid="34715a6d-2d9e-4ca6-98a5-44c611d63172"/>
+				<box>
+					<bottomPen lineWidth="2.0" lineStyle="Double"/>
+				</box>
+				<textElement markup="none">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Total No of Hotels :"+$V{product_name1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
