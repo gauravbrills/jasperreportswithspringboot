@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.2.2.BUILD-SNAPSHOT</version>
+		<version>1.2.8.RELEASE</version>
 	</parent>
 	<groupId>gauravbrills.demo</groupId>
 	<artifactId>jasperreportswithboot</artifactId>
@@ -37,7 +37,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.14.4</version>
+			<version>1.14.4</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -61,7 +61,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>24.1.1</version>
+			<version>24.1.1-jre</version>
 		</dependency>
 		<dependency>
 			<groupId>org.webjars</groupId>
@@ -81,7 +81,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.16</version>
+			<version>8.0.16</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 
 		<!-- Jasper Report Specific Jars START -->
