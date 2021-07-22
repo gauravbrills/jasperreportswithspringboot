@@ -14,7 +14,9 @@ hence updating code to use jasper directly .Will add an example soon .
 
 
 `The jasper endpoints shall be like http://localhost:8080/reports/{reportname}?format={format}&id={id} (id param are optional,you can add ur custom report params there)`
-eg. `http://localhost:8080/reports/rpt_A?format=pdf`
+
+eg.
+`http://localhost:8080/reports/rpt_A?format=pdf`
 
 
 Cheers! :wine_glass:
