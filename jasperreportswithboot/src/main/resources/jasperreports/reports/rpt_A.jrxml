@@ -6,10 +6,9 @@
 	<scriptlet name="CustomScriplet" class="gauravbrills.demo.jasper.reports.LogScriplet"/>
 	<parameter name="productid" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[select master.product_id,product_name,description,address,latitude,longitude,COALESCE (star_Rating,'0') rating from m_product_master master ,m_hotel hotel
- where master.product_id = hotel.product_id and star_Rating <> "boutique" and
- master.product_id like  if( $P{productid} = "ALL","%", $P{productid})
- order by rating desc]]>
+		<![CDATA[select master.product_id,product_name,description,address,latitude,longitude,COALESCE (star_Rating,'0') rating
+		from m_product_master master ,m_hotel hotel
+ where master.product_id = hotel.product_id and master.product_id like $P{productid}  order by rating desc]]>
 	</queryString>
 	<field name="product_name" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>

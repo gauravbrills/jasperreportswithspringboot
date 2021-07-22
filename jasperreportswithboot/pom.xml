@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.2.8.RELEASE</version>
+		<version>1.5.17.RELEASE</version>
 	</parent>
 	<groupId>gauravbrills.demo</groupId>
 	<artifactId>jasperreportswithboot</artifactId>
@@ -38,16 +38,6 @@
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.14.4</version><!--$NO-MVN-MAN-VER$-->
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>bootstrap</artifactId>
-			<version>3.0.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>jquery</artifactId>
-			<version>2.0.3-1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
@@ -96,7 +86,11 @@
 			<artifactId>poi</artifactId>
 			<version>3.17</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 
 		<!-- Jasper Report Specific Jars END -->
 		<dependency>
@@ -112,7 +106,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<!-- <configuration> <jvmArguments> -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y 
+				<!-- <configuration> <jvmArguments> -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=y
 					</jvmArguments> </configuration> -->
 			</plugin>
 			<plugin>

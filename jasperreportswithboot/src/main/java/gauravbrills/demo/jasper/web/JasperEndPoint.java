@@ -1,13 +1,4 @@
-/**
- * 
- */
 package gauravbrills.demo.jasper.web;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.sql.DataSource;
-import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.sql.DataSource;
+import javax.websocket.server.PathParam;
 
 /**
  * @author grawat
@@ -30,21 +24,14 @@ public class JasperEndPoint {
     @Autowired
     private DataSource dbsoruce;
 
-    /*
-     * @RequestMapping(value = "{reportname}", method = RequestMethod.GET) public ModelAndView getReportsFull(final ModelMap
-     * modelMap, ModelAndView modelAndView, @PathParam("reportname") final String reportname, @RequestParam(FILE_FORMAT) final
-     * String format) { // JRDataSource datasource = new JRBeanCollectionDataSource(dataMap); modelMap.put(DATASOURCE, dbsoruce);
-     * modelMap.put(FILE_FORMAT, format); modelAndView = new ModelAndView(reportname, modelMap); return modelAndView; }
-     */
-    @RequestMapping(value = "{reportname}", method = RequestMethod.GET)
-    public ModelAndView getRptByParam(final ModelMap modelMap, ModelAndView modelAndView, @PathParam("reportname")
-    final String reportname, @RequestParam(FILE_FORMAT)
-    final String format, @RequestParam("id")
-    final String id) {
 
-        List<String> paramMap = new ArrayList<>();
-        paramMap.add(id);
-        // connecting to mysql
+    @RequestMapping(value = "{reportname}", method = RequestMethod.GET)
+    public ModelAndView getRptByParam(final ModelMap modelMap, ModelAndView modelAndView,
+                                      @PathParam("reportname") final String reportname,
+                                      @RequestParam(value = FILE_FORMAT, defaultValue = "pdf") final String format,
+                                      @RequestParam(value = "id", defaultValue = "%") final String id) {
+
+        // connecting to embedded h2
         modelMap.put(DATASOURCE, dbsoruce);
         modelMap.put(FILE_FORMAT, format);
         modelMap.put("productid", id);
